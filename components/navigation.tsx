@@ -24,7 +24,7 @@ export function Navigation() {
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
         <Link href="/" className="flex items-center gap-2">
           <Telescope className="h-6 w-6 text-primary" />
-          <span className="text-xl font-bold hidden sm:inline">ExoPlanet Hunter with AI</span>
+          <span className="text-xl font-bold hidden sm:inline">EPHAI</span>
           <span className="text-xl font-bold sm:hidden">ExoPlanet</span>
         </Link>
 
