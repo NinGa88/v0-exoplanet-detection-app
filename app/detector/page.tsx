@@ -3,7 +3,6 @@
 import type React from "react"
 
 import { useState } from "react"
-import { NavigationWrapper } from "@/components/navigation-wrapper"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -95,8 +94,6 @@ export default function DetectorPage() {
 
   return (
     <div className="min-h-screen bg-background starfield">
-      <NavigationWrapper />
-
       <div className="container mx-auto px-4 pt-24 pb-12">
         {/* Header */}
         <div className="mb-8">

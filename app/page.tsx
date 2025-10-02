@@ -1,14 +1,11 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { NavigationWrapper } from "@/components/navigation-wrapper"
 import { Telescope, Database, Brain, LineChart, BookOpen, ArrowRight, Sparkles } from "lucide-react"
 import Link from "next/link"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background starfield">
-      <NavigationWrapper />
-
       {/* Hero Section */}
       <section className="container mx-auto px-4 pt-32 pb-20">
         <div className="max-w-4xl mx-auto text-center">
