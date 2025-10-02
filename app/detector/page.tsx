@@ -94,14 +94,14 @@ export default function DetectorPage() {
 
   return (
     <div className="min-h-screen bg-background starfield">
-      <div className="container mx-auto px-4 pt-24 pb-12">
+      <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-12">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <Brain className="h-8 w-8 text-primary" />
-            <h1 className="text-4xl font-bold">Exoplanet Detector</h1>
+            <Brain className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+            <h1 className="text-3xl sm:text-4xl font-bold">Exoplanet Detector</h1>
           </div>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-3xl">
             Upload light curve data or use sample datasets to detect potential exoplanets using AI-powered transit
             analysis.
           </p>
@@ -110,14 +110,16 @@ export default function DetectorPage() {
         {/* Mode Toggle */}
         <div className="mb-6">
           <Tabs value={mode} onValueChange={(v) => setMode(v as "training" | "detection")}>
-            <TabsList>
-              <TabsTrigger value="detection">
+            <TabsList className="w-full sm:w-auto">
+              <TabsTrigger value="detection" className="flex-1 sm:flex-none">
                 <Sparkles className="h-4 w-4 mr-2" />
-                Detection Mode
+                <span className="hidden sm:inline">Detection Mode</span>
+                <span className="sm:hidden">Detection</span>
               </TabsTrigger>
-              <TabsTrigger value="training">
+              <TabsTrigger value="training" className="flex-1 sm:flex-none">
                 <Brain className="h-4 w-4 mr-2" />
-                Training Mode
+                <span className="hidden sm:inline">Training Mode</span>
+                <span className="sm:hidden">Training</span>
               </TabsTrigger>
             </TabsList>
           </Tabs>
@@ -248,26 +250,26 @@ export default function DetectorPage() {
 
           {/* Right Column - Visualization */}
           <div className="lg:col-span-2">
-            <Card className="p-6 bg-card border-border">
-              <h3 className="text-lg font-bold mb-4">Light Curve Analysis</h3>
+            <Card className="p-4 sm:p-6 bg-card border-border">
+              <h3 className="text-base sm:text-lg font-bold mb-4">Light Curve Analysis</h3>
 
               {lightCurveData.length > 0 ? (
                 <>
                   <LightCurveChart data={lightCurveData} />
 
-                  <div className="mt-6 grid md:grid-cols-3 gap-4">
+                  <div className="mt-6 grid grid-cols-3 gap-2 sm:gap-4">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">{lightCurveData.length}</div>
-                      <div className="text-sm text-muted-foreground">Data Points</div>
+                      <div className="text-xl sm:text-2xl font-bold text-primary">{lightCurveData.length}</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground">Data Points</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">
+                      <div className="text-xl sm:text-2xl font-bold text-primary">
                         {(lightCurveData[lightCurveData.length - 1].time - lightCurveData[0].time).toFixed(1)}
                       </div>
-                      <div className="text-sm text-muted-foreground">Days Observed</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground">Days Observed</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">
+                      <div className="text-xl sm:text-2xl font-bold text-primary">
                         {(
                           (Math.max(...lightCurveData.map((d) => d.brightness)) -
                             Math.min(...lightCurveData.map((d) => d.brightness))) *
@@ -275,15 +277,15 @@ export default function DetectorPage() {
                         ).toFixed(2)}
                         %
                       </div>
-                      <div className="text-sm text-muted-foreground">Brightness Variation</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground">Brightness Variation</div>
                     </div>
                   </div>
                 </>
               ) : (
-                <div className="flex flex-col items-center justify-center py-20 text-center">
-                  <TrendingDown className="h-16 w-16 text-muted-foreground mb-4" />
-                  <h3 className="text-lg font-bold mb-2">No Data Loaded</h3>
-                  <p className="text-muted-foreground max-w-md">
+                <div className="flex flex-col items-center justify-center py-12 sm:py-20 text-center px-4">
+                  <TrendingDown className="h-12 w-12 sm:h-16 sm:w-16 text-muted-foreground mb-4" />
+                  <h3 className="text-base sm:text-lg font-bold mb-2">No Data Loaded</h3>
+                  <p className="text-sm sm:text-base text-muted-foreground max-w-md">
                     Upload your own light curve data or load a sample dataset to begin analyzing for exoplanet transits.
                   </p>
                 </div>
@@ -291,7 +293,7 @@ export default function DetectorPage() {
             </Card>
 
             {/* Info Cards */}
-            <div className="grid md:grid-cols-2 gap-4 mt-6">
+            <div className="grid sm:grid-cols-2 gap-4 mt-6">
               <Card className="p-4 bg-card border-border">
                 <h4 className="font-bold mb-2 text-sm">What is a Light Curve?</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">

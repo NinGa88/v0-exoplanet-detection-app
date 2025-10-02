@@ -62,14 +62,14 @@ export default function ExplorerPage() {
 
   return (
     <div className="min-h-screen bg-background starfield">
-      <div className="container mx-auto px-4 pt-24 pb-12">
+      <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-12">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <Database className="h-8 w-8 text-primary" />
-            <h1 className="text-4xl font-bold">Data Explorer</h1>
+            <Database className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+            <h1 className="text-3xl sm:text-4xl font-bold">Data Explorer</h1>
           </div>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-3xl">
             Browse real exoplanet data from NASA's Exoplanet Archive. Explore confirmed planets and TESS Objects of
             Interest (TOI) from multiple space missions.
           </p>
@@ -77,7 +77,7 @@ export default function ExplorerPage() {
 
         {/* Search Bar */}
         <div className="mb-6">
-          <div className="relative max-w-md">
+          <div className="relative w-full sm:max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Search by planet or star name..."
@@ -90,9 +90,15 @@ export default function ExplorerPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="mb-6">
-            <TabsTrigger value="confirmed">Confirmed Exoplanets ({k2Data.length})</TabsTrigger>
-            <TabsTrigger value="toi">TESS Objects of Interest ({toiData.length})</TabsTrigger>
+          <TabsList className="mb-6 w-full sm:w-auto grid grid-cols-2 sm:inline-grid">
+            <TabsTrigger value="confirmed" className="text-xs sm:text-sm">
+              <span className="hidden sm:inline">Confirmed Exoplanets ({k2Data.length})</span>
+              <span className="sm:hidden">Confirmed ({k2Data.length})</span>
+            </TabsTrigger>
+            <TabsTrigger value="toi" className="text-xs sm:text-sm">
+              <span className="hidden sm:inline">TESS Objects of Interest ({toiData.length})</span>
+              <span className="sm:hidden">TOI ({toiData.length})</span>
+            </TabsTrigger>
           </TabsList>
 
           {/* Confirmed Exoplanets Tab */}
@@ -104,33 +110,44 @@ export default function ExplorerPage() {
             ) : (
               <div className="grid gap-4">
                 {filteredK2Data.map((planet, index) => (
-                  <Card key={index} className="p-6 bg-card border-border hover:border-primary/50 transition-colors">
-                    <div className="flex items-start justify-between mb-4">
+                  <Card
+                    key={index}
+                    className="p-4 sm:p-6 bg-card border-border hover:border-primary/50 transition-colors"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 gap-2">
                       <div>
-                        <h3 className="text-xl font-bold mb-1">{planet.pl_name}</h3>
-                        <p className="text-muted-foreground">Host Star: {planet.hostname}</p>
+                        <h3 className="text-lg sm:text-xl font-bold mb-1">{planet.pl_name}</h3>
+                        <p className="text-sm sm:text-base text-muted-foreground">Host Star: {planet.hostname}</p>
                       </div>
-                      <Badge variant="secondary">{planet.disc_year}</Badge>
+                      <Badge variant="secondary" className="self-start">
+                        {planet.disc_year}
+                      </Badge>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4">
                       <div>
-                        <div className="text-sm text-muted-foreground mb-1">Discovery Method</div>
-                        <div className="font-medium">{planet.discoverymethod || "N/A"}</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground mb-1">Discovery Method</div>
+                        <div className="text-sm sm:text-base font-medium truncate">
+                          {planet.discoverymethod || "N/A"}
+                        </div>
                       </div>
                       <div>
-                        <div className="text-sm text-muted-foreground mb-1">Orbital Period</div>
-                        <div className="font-medium">
+                        <div className="text-xs sm:text-sm text-muted-foreground mb-1">Orbital Period</div>
+                        <div className="text-sm sm:text-base font-medium">
                           {planet.pl_orbper ? `${planet.pl_orbper.toFixed(2)} days` : "N/A"}
                         </div>
                       </div>
                       <div>
-                        <div className="text-sm text-muted-foreground mb-1">Planet Radius</div>
-                        <div className="font-medium">{planet.pl_rade ? `${planet.pl_rade.toFixed(2)} R⊕` : "N/A"}</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground mb-1">Planet Radius</div>
+                        <div className="text-sm sm:text-base font-medium">
+                          {planet.pl_rade ? `${planet.pl_rade.toFixed(2)} R⊕` : "N/A"}
+                        </div>
                       </div>
                       <div>
-                        <div className="text-sm text-muted-foreground mb-1">Star Temperature</div>
-                        <div className="font-medium">{planet.st_teff ? `${planet.st_teff.toFixed(0)} K` : "N/A"}</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground mb-1">Star Temperature</div>
+                        <div className="text-sm sm:text-base font-medium">
+                          {planet.st_teff ? `${planet.st_teff.toFixed(0)} K` : "N/A"}
+                        </div>
                       </div>
                     </div>
 
@@ -143,7 +160,7 @@ export default function ExplorerPage() {
                 ))}
 
                 {filteredK2Data.length === 0 && (
-                  <div className="text-center py-12 text-muted-foreground">
+                  <div className="text-center py-12 text-sm sm:text-base text-muted-foreground">
                     No exoplanets found matching your search.
                   </div>
                 )}
@@ -160,43 +177,48 @@ export default function ExplorerPage() {
             ) : (
               <div className="grid gap-4">
                 {filteredToiData.slice(0, 50).map((toi, index) => (
-                  <Card key={index} className="p-6 bg-card border-border hover:border-primary/50 transition-colors">
-                    <div className="flex items-start justify-between mb-4">
+                  <Card
+                    key={index}
+                    className="p-4 sm:p-6 bg-card border-border hover:border-primary/50 transition-colors"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 gap-2">
                       <div>
-                        <h3 className="text-xl font-bold mb-1">TOI {toi.toi}</h3>
-                        <p className="text-muted-foreground">TIC ID: {toi.tid}</p>
+                        <h3 className="text-lg sm:text-xl font-bold mb-1">TOI {toi.toi}</h3>
+                        <p className="text-sm sm:text-base text-muted-foreground">TIC ID: {toi.tid}</p>
                       </div>
-                      <Badge variant={toi.tfopwg_disp === "PC" ? "default" : "secondary"}>
+                      <Badge variant={toi.tfopwg_disp === "PC" ? "default" : "secondary"} className="self-start">
                         {toi.tfopwg_disp || "Candidate"}
                       </Badge>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4">
                       <div>
-                        <div className="text-sm text-muted-foreground mb-1">Orbital Period</div>
-                        <div className="font-medium">
+                        <div className="text-xs sm:text-sm text-muted-foreground mb-1">Orbital Period</div>
+                        <div className="text-sm sm:text-base font-medium">
                           {toi.pl_orbper ? `${Number.parseFloat(toi.pl_orbper).toFixed(2)} days` : "N/A"}
                         </div>
                       </div>
                       <div>
-                        <div className="text-sm text-muted-foreground mb-1">Planet Radius</div>
-                        <div className="font-medium">
+                        <div className="text-xs sm:text-sm text-muted-foreground mb-1">Planet Radius</div>
+                        <div className="text-sm sm:text-base font-medium">
                           {toi.pl_rade ? `${Number.parseFloat(toi.pl_rade).toFixed(2)} R⊕` : "N/A"}
                         </div>
                       </div>
                       <div>
-                        <div className="text-sm text-muted-foreground mb-1">Transit Depth</div>
-                        <div className="font-medium">{toi.pl_trandep ? `${toi.pl_trandep} ppm` : "N/A"}</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground mb-1">Transit Depth</div>
+                        <div className="text-sm sm:text-base font-medium">
+                          {toi.pl_trandep ? `${toi.pl_trandep} ppm` : "N/A"}
+                        </div>
                       </div>
                       <div>
-                        <div className="text-sm text-muted-foreground mb-1">Star Magnitude</div>
-                        <div className="font-medium">
+                        <div className="text-xs sm:text-sm text-muted-foreground mb-1">Star Magnitude</div>
+                        <div className="text-sm sm:text-base font-medium">
                           {toi.st_tmag ? Number.parseFloat(toi.st_tmag).toFixed(2) : "N/A"}
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <Badge variant="outline" className="text-xs">
                         TESS Mission
                       </Badge>
@@ -210,7 +232,7 @@ export default function ExplorerPage() {
                 ))}
 
                 {filteredToiData.length === 0 && (
-                  <div className="text-center py-12 text-muted-foreground">
+                  <div className="text-center py-12 text-sm sm:text-base text-muted-foreground">
                     No TESS objects found matching your search.
                   </div>
                 )}
@@ -220,8 +242,8 @@ export default function ExplorerPage() {
         </Tabs>
 
         {/* Info Card */}
-        <Card className="mt-8 p-6 bg-primary/5 border-primary/20">
-          <div className="flex items-start gap-4">
+        <Card className="mt-8 p-4 sm:p-6 bg-primary/5 border-primary/20">
+          <div className="flex flex-col sm:flex-row items-start gap-4">
             <ExternalLink className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
             <div>
               <h3 className="font-bold mb-2">About This Data</h3>

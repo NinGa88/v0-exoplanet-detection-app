@@ -78,14 +78,14 @@ export default function LearnPage() {
 
   return (
     <div className="min-h-screen bg-background starfield">
-      <div className="container mx-auto px-4 pt-24 pb-12">
+      <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-12">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <BookOpen className="h-8 w-8 text-primary" />
-            <h1 className="text-4xl font-bold">Learn About Exoplanets</h1>
+            <BookOpen className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+            <h1 className="text-3xl sm:text-4xl font-bold">Learn About Exoplanets</h1>
           </div>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-3xl">
             Discover how astronomers detect distant worlds and understand the science behind exoplanet hunting.
           </p>
         </div>
@@ -93,9 +93,9 @@ export default function LearnPage() {
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Sidebar Navigation */}
           <div className="lg:col-span-1">
-            <Card className="p-4 bg-card border-border sticky top-24">
+            <Card className="p-4 bg-card border-border lg:sticky lg:top-24">
               <h3 className="font-bold mb-4">Topics</h3>
-              <div className="space-y-2">
+              <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0">
                 {[
                   { id: "basics", label: "The Basics", icon: Lightbulb },
                   { id: "transit", label: "Transit Method", icon: TrendingDown },
@@ -105,13 +105,13 @@ export default function LearnPage() {
                   <button
                     key={topic.id}
                     onClick={() => setActiveSection(topic.id)}
-                    className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left transition-colors ${
+                    className={`flex items-center gap-2 px-3 py-2 rounded-lg text-left transition-colors whitespace-nowrap lg:w-full ${
                       activeSection === topic.id
                         ? "bg-primary text-primary-foreground"
                         : "hover:bg-secondary text-muted-foreground"
                     }`}
                   >
-                    <topic.icon className="h-4 w-4" />
+                    <topic.icon className="h-4 w-4 flex-shrink-0" />
                     <span className="text-sm font-medium">{topic.label}</span>
                   </button>
                 ))}
@@ -124,10 +124,10 @@ export default function LearnPage() {
             {/* The Basics */}
             {activeSection === "basics" && (
               <div className="space-y-6">
-                <Card className="p-6 bg-card border-border">
+                <Card className="p-4 sm:p-6 bg-card border-border">
                   <div className="flex items-center gap-2 mb-4">
-                    <Lightbulb className="h-6 w-6 text-primary" />
-                    <h2 className="text-2xl font-bold">What Are Exoplanets?</h2>
+                    <Lightbulb className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                    <h2 className="text-xl sm:text-2xl font-bold">What Are Exoplanets?</h2>
                   </div>
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
                     <p>
@@ -148,11 +148,11 @@ export default function LearnPage() {
                   </div>
                 </Card>
 
-                <Card className="p-6 bg-card border-border">
-                  <h3 className="text-xl font-bold mb-4">Why Study Exoplanets?</h3>
-                  <div className="grid md:grid-cols-2 gap-4">
+                <Card className="p-4 sm:p-6 bg-card border-border">
+                  <h3 className="text-lg sm:text-xl font-bold mb-4">Why Study Exoplanets?</h3>
+                  <div className="grid sm:grid-cols-2 gap-4">
                     <div className="flex gap-3">
-                      <Globe className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                      <Globe className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                       <div>
                         <h4 className="font-bold mb-1">Search for Life</h4>
                         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -161,7 +161,7 @@ export default function LearnPage() {
                       </div>
                     </div>
                     <div className="flex gap-3">
-                      <Telescope className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                      <Telescope className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                       <div>
                         <h4 className="font-bold mb-1">Understand Formation</h4>
                         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -170,7 +170,7 @@ export default function LearnPage() {
                       </div>
                     </div>
                     <div className="flex gap-3">
-                      <Star className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                      <Star className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                       <div>
                         <h4 className="font-bold mb-1">Characterize Atmospheres</h4>
                         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -179,7 +179,7 @@ export default function LearnPage() {
                       </div>
                     </div>
                     <div className="flex gap-3">
-                      <Rocket className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                      <Rocket className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                       <div>
                         <h4 className="font-bold mb-1">Advance Technology</h4>
                         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -195,10 +195,10 @@ export default function LearnPage() {
             {/* Transit Method */}
             {activeSection === "transit" && (
               <div className="space-y-6">
-                <Card className="p-6 bg-card border-border">
+                <Card className="p-4 sm:p-6 bg-card border-border">
                   <div className="flex items-center gap-2 mb-4">
-                    <TrendingDown className="h-6 w-6 text-primary" />
-                    <h2 className="text-2xl font-bold">The Transit Method</h2>
+                    <TrendingDown className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                    <h2 className="text-xl sm:text-2xl font-bold">The Transit Method</h2>
                   </div>
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
                     <p>
@@ -214,8 +214,8 @@ export default function LearnPage() {
                   </div>
                 </Card>
 
-                <Card className="p-6 bg-card border-border">
-                  <h3 className="text-xl font-bold mb-4">How It Works</h3>
+                <Card className="p-4 sm:p-6 bg-card border-border">
+                  <h3 className="text-lg sm:text-xl font-bold mb-4">How It Works</h3>
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="step1">
                       <AccordionTrigger>
@@ -279,7 +279,7 @@ export default function LearnPage() {
                   </Accordion>
                 </Card>
 
-                <Card className="p-6 bg-primary/5 border-primary/20">
+                <Card className="p-4 sm:p-6 bg-primary/5 border-primary/20">
                   <h3 className="font-bold mb-2">Key Insight</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     The transit method only works when a planet's orbit is aligned edge-on from our perspective. This
@@ -293,10 +293,10 @@ export default function LearnPage() {
             {/* NASA Missions */}
             {activeSection === "missions" && (
               <div className="space-y-6">
-                <Card className="p-6 bg-card border-border">
+                <Card className="p-4 sm:p-6 bg-card border-border">
                   <div className="flex items-center gap-2 mb-4">
-                    <Rocket className="h-6 w-6 text-primary" />
-                    <h2 className="text-2xl font-bold">NASA Exoplanet Missions</h2>
+                    <Rocket className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                    <h2 className="text-xl sm:text-2xl font-bold">NASA Exoplanet Missions</h2>
                   </div>
                   <p className="text-muted-foreground leading-relaxed">
                     NASA has launched several groundbreaking missions dedicated to discovering and studying exoplanets.
@@ -305,7 +305,7 @@ export default function LearnPage() {
                 </Card>
 
                 {missions.map((mission, index) => (
-                  <Card key={index} className="p-6 bg-card border-border">
+                  <Card key={index} className="p-4 sm:p-6 bg-card border-border">
                     <div className="flex items-start gap-4 mb-4">
                       <div className="p-3 rounded-lg bg-primary/10">
                         <mission.icon className="h-6 w-6 text-primary" />
@@ -327,10 +327,10 @@ export default function LearnPage() {
             {/* Glossary */}
             {activeSection === "glossary" && (
               <div className="space-y-6">
-                <Card className="p-6 bg-card border-border">
+                <Card className="p-4 sm:p-6 bg-card border-border">
                   <div className="flex items-center gap-2 mb-4">
-                    <BookOpen className="h-6 w-6 text-primary" />
-                    <h2 className="text-2xl font-bold">Astronomy Glossary</h2>
+                    <BookOpen className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                    <h2 className="text-xl sm:text-2xl font-bold">Astronomy Glossary</h2>
                   </div>
                   <p className="text-muted-foreground leading-relaxed">
                     Key terms and concepts used in exoplanet science and astronomy.
