@@ -1,4 +1,4 @@
-# 🌌 Exoplanet Hunter with AI
+# 🌌 Exoplanet Hunter
 
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://exoplanet-hunter.vercel.app)
 
@@ -64,14 +64,11 @@ Exoplanet Hunter is an interactive web application that enables users to explore
 
 1. Clone the repository:
 \`\`\`bash
-
 git clone https://github.com/NinGa88/v0-exoplanet-detection-app.git
-
 cd v0-exoplanet-detection-app
-
 \`\`\`
 
-3. Install dependencies:
+2. Install dependencies:
 \`\`\`bash
 npm install
 # or
@@ -86,6 +83,31 @@ yarn dev
 \`\`\`
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 🗂️ Project Structure
+
+\`\`\`
+v0-exoplanet-detection-app/
+├── app/
+│   ├── page.tsx              # Homepage with hero and features
+│   ├── detector/
+│   │   └── page.tsx          # AI detection interface
+│   ├── explorer/
+│   │   └── page.tsx          # NASA data browser
+│   ├── learn/
+│   │   └── page.tsx          # Educational resources
+│   ├── results/
+│   │   └── page.tsx          # Detection results display
+│   ├── layout.tsx            # Root layout with navigation
+│   └── globals.css           # Global styles and theme
+├── components/
+│   ├── navigation.tsx        # Main navigation bar
+│   ├── navigation-wrapper.tsx # Suspense wrapper for navigation
+│   └── ui/                   # shadcn/ui components
+├── lib/
+│   └── utils.ts              # Utility functions
+└── public/                   # Static assets
+\`\`\`
 
 ## 🎯 Usage
 
@@ -143,7 +165,7 @@ This project is open source and available under the MIT License.
 
 ## 📧 Contact
 
-For questions or feedback, please open an issue on GitHub.
+For questions or feedback, please open an issue on GitHub or reach out through the v0.app chat.
 
 ---
 
