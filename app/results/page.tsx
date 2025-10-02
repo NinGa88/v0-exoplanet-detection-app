@@ -1,6 +1,6 @@
 "use client"
 
-import { Navigation } from "@/components/navigation"
+import { NavigationWrapper } from "@/components/navigation-wrapper"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Bar, BarChart, Scatter, ScatterChart, XAxis, YAxis, CartesianGrid, ResponsiveContainer, ZAxis } from "recharts"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { CheckCircle2, TrendingUp, Globe, Thermometer, Clock, Ruler, Download, Share2, BarChart3 } from "lucide-react"
+import { Suspense } from "react"
 
 export default function ResultsPage() {
   // Mock detection results
@@ -83,7 +84,9 @@ export default function ResultsPage() {
 
   return (
     <div className="min-h-screen bg-background starfield">
-      <Navigation />
+      <Suspense fallback={<div>Loading...</div>}>
+        <NavigationWrapper />
+      </Suspense>
 
       <div className="container mx-auto px-4 pt-24 pb-12">
         {/* Header */}
