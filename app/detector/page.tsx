@@ -186,6 +186,26 @@ export default function DetectorPage() {
               </p>
             </Card>
 
+            {/* Add this as a new Card component in your left column, below the "How It Works" card */}
+            <Card className="p-6 bg-gradient-to-br from-purple-900/20 to-blue-900/20 border-purple-500/30">
+              <h3 className="font-bold mb-2 flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-purple-400" />
+                Advanced AI Model
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                For better responses with our full trained AI model, go to{" "}
+                <a 
+                  href="https://huggingface.co/spaces/abo-gharib/exo-test" // Replace with your actual Hugging Face Space URL
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-purple-400 hover:text-purple-300 underline transition-colors"
+                >
+                  ExoPlanet Hunter AI Model on Hugging Face Space
+                </a>{" "}
+                - developed with love by ExoPlanet Hunter Team
+              </p>
+            </Card>
+
             {/* Results Summary */}
             {result && (
               <Card className="p-6 bg-card border-border">
